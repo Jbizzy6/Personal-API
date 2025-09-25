@@ -1,8 +1,7 @@
 //TODO: re-write routes into thier own files
-//TODO: write GET method for posted feedback, possibly add searching by id, maybe add id searching for projects too
+//TODO: write GET method for searching by IDs for feedback and projects
 //TODO: write PUT method for updating feedback
 //TODO: write DELETE method for feedback
-//TODO: add input validation to the feedback POST
 
 const express = require('express');
 
@@ -40,6 +39,15 @@ app.post('/feedback', (req, res) => { //creates new feedback with an id and a bo
 );
 
 //PUT endpoints
+app.put('./src/data/data/:feedbackDetails', (req, res) => {
+    const feedbackDetails = req.body.feedbackDetails;
+    const updateFeedback = req.body;
+
+    feedbackDetails = { ...feedbackDetails, ...updateFeedback };
+
+    res.status(201).json(feedbackDetails)
+}
+);
 
 //GET endpoints
 app.get('/', (req, res) => res.json(welcome));//get a welcome message
