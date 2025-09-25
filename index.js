@@ -1,5 +1,4 @@
 //TODO: re-write routes into thier own files
-//TODO: write DELETE method for feedback
 
 const express = require('express');
 
@@ -38,14 +37,19 @@ app.post('/feedback/', (req, res) => { //creates new feedback with an id and a b
 
 //PUT endpoints
 app.put('/feedback/:id', (req, res) => {
-  const feedbackId = parseInt(req.params.id);
-  const { feedbackDetails } = req.body;
+    const id = req.params.id;
+    const updateFeedback = req.body;
 
-  const feedbackItem = feedback.find(item => item.id === feedbackId);
+    //validate that feedback exists
+    if (feedback.id !== parseInt(id)) {
+        return res.status(404).send("feedback does not exist");
+    }
 
-  feedbackItem.feedbackDetails = feedbackDetails.trim();
+    //update feedback
+    feedback = { ...feedback, ...updateFeedback };
 
-  res.status(200).json(feedbackItem);
+    //respond
+    res.status(200).json(feedback)
 }
 );
 
