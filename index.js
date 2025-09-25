@@ -65,8 +65,21 @@ app.get('/feedback', (req, res) => //get feedback data
 );
 
 //DELETE endpoints
-app.delete('/feedback/:id', (req, res) => 
-    res.status(204).json(feedback)
+app.delete('/feedback/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = feedback.findIndex(item => item.id === id);
+
+    //check if id exists
+    if (index === -1) {
+        return res.status(404).send("data not found")
+    }
+    
+    //remove feedback from the array
+    feedback.splice(index, 1);
+
+    //respond
+    res.status(200).send("feedback successfully deleted");
+}
 );
 
 //listen for port
