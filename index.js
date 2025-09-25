@@ -35,7 +35,7 @@ app.post('/feedback', (req, res) => { //creates new feedback with an id and a bo
 //PUT endpoints
 
 //GET endpoints
-app.get('/', (req, res) => res.json(welcome));
+app.get('/', (req, res) => res.json(welcome));//get a welcome message
 
 app.get('/about', (req, res) => //get about data
     res.json(about)
@@ -43,6 +43,10 @@ app.get('/about', (req, res) => //get about data
 
 app.get('/projects', (req, res) => //get projects data
     res.json(projects)
+);
+
+app.get('/feedback', (req, res) =>
+    res.json(feedback)
 );
 
 //DELETE endpoints

@@ -13,6 +13,8 @@ let projects = [
     {id: 3, title: "Example Project", description: "this is an example"} 
 ];
 
-let feedback = [];
+let feedback = [
+    {id: 1, name: "Josh", feedbackDetails: "this looks good"}
+];
 
 module.exports = {welcome, about, projects, feedback};
