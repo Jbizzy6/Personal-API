@@ -1,6 +1,5 @@
 //TODO: re-write routes into thier own files
 //TODO: write GET method for searching by IDs for feedback and projects
-//TODO: write PUT method for updating feedback
 //TODO: write DELETE method for feedback
 
 const express = require('express');
@@ -19,7 +18,7 @@ const { feedback } = require('./src/data/data');
 app.use(express.json());
 
 //POST endpoints
-app.post('/feedback', (req, res) => { //creates new feedback with an id and a body for the feedback text
+app.post('/feedback/', (req, res) => { //creates new feedback with an id and a body for the feedback text
       const { feedbackDetails } = req.body;
 
   // Check if feedback details field has been filled in
@@ -39,13 +38,15 @@ app.post('/feedback', (req, res) => { //creates new feedback with an id and a bo
 );
 
 //PUT endpoints
-app.put('./src/data/data/:feedbackDetails', (req, res) => {
-    const feedbackDetails = req.body.feedbackDetails;
-    const updateFeedback = req.body;
+app.put('/feedback/:id', (req, res) => {
+  const feedbackId = parseInt(req.params.id);
+  const { feedbackDetails } = req.body;
 
-    feedbackDetails = { ...feedbackDetails, ...updateFeedback };
+  const feedbackItem = feedback.find(item => item.id === feedbackId);
 
-    res.status(201).json(feedbackDetails)
+  feedbackItem.feedbackDetails = feedbackDetails.trim();
+
+  res.status(200).json(feedbackItem);
 }
 );
 
@@ -66,7 +67,6 @@ app.get('/feedback', (req, res) =>
 
 //DELETE endpoints
 
-//listen for the server
-app.listen(PORT, () => 
-    console.log(`your server is running on port ${PORT}`)
+app.listen(PORT, () =>
+    console.log(`server is running on localhost ${PORT}`)
 );
