@@ -28,7 +28,7 @@ app.post('/feedback', (req, res) => { //creates new feedback with an id and a bo
     };
 
     feedback.push(newFeedback); //adds new feedback to the end of the feedback array
-    res.json(newFeedback); //respond with json
+    res.status(201).json(newFeedback); //respond with json
 }
 );
 
@@ -38,15 +38,15 @@ app.post('/feedback', (req, res) => { //creates new feedback with an id and a bo
 app.get('/', (req, res) => res.json(welcome));//get a welcome message
 
 app.get('/about', (req, res) => //get about data
-    res.json(about)
+    res.status(201).json(about)
 );
 
 app.get('/projects', (req, res) => //get projects data
-    res.json(projects)
+    res.status(201).json(projects)
 );
 
 app.get('/feedback', (req, res) =>
-    res.json(feedback)
+    res.status(201).json(feedback)
 );
 
 //DELETE endpoints
