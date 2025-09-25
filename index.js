@@ -2,14 +2,16 @@
 //TODO: write GET method for posted feedback, possibly add searching by id, maybe add id searching for projects too
 //TODO: write PUT method for updating feedback
 //TODO: write DELETE method for feedback
+//TODO: add input validation to the feedback POST
 
 const express = require('express');
 
 //create app and set port
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 //import data
+const { welcome } = require('./src/data/data')
 const { about } = require('./src/data/data');
 const { projects } = require('./src/data/data');
 const { feedback } = require('./src/data/data');
@@ -25,12 +27,15 @@ app.post('/feedback', (req, res) => { //creates new feedback with an id and a bo
     };
 
     feedback.push(newFeedback); //adds new feedback to the end of the feedback array
+    res.json(newFeedback); //respond with json
 }
 );
 
 //PUT endpoints
 
 //GET endpoints
+app.get('/', (req, res) => res.json(welcome));
+
 app.get('/about', (req, res) => //get about data
     res.json(about)
 );

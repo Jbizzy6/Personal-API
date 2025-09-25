@@ -1,3 +1,5 @@
+let welcome = ("hello and welcome to my personal API");
+
 let about = {
     name: "Joshua Ross",
     studyYear: "year 2",
@@ -13,4 +15,4 @@ let projects = [
 
 let feedback = [];
 
-module.exports = {about, projects, feedback};
+module.exports = {welcome, about, projects, feedback};
