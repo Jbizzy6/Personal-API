@@ -1,3 +1,8 @@
+//TODO: re-write routes into thier own files
+//TODO: write GET method for posted feedback, possibly add searching by id, maybe add id searching for projects too
+//TODO: write PUT method for updating feedback
+//TODO: write DELETE method for feedback
+
 const express = require('express');
 
 //create app and set port
@@ -9,18 +14,32 @@ const { about } = require('./src/data/data');
 const { projects } = require('./src/data/data');
 const { feedback } = require('./src/data/data');
 
-//endpoints
-app.get('/about', (req, res) =>
+// Middleware to parse JSON requests
+app.use(express.json());
+
+//POST endpoints
+app.post('/feedback', (req, res) => { //creates new feedback with an id and a body for the feedback text
+    const newFeedback = {
+        id: feedback.length + 1,
+        feedbackDetails: req.body.feedbackDetails
+    };
+
+    feedback.push(newFeedback); //adds new feedback to the end of the feedback array
+}
+);
+
+//PUT endpoints
+
+//GET endpoints
+app.get('/about', (req, res) => //get about data
     res.json(about)
 );
 
-app.get('/projects', (req, res) =>
+app.get('/projects', (req, res) => //get projects data
     res.json(projects)
 );
 
-app.post('/feedback', (req, res) =>
-    req.json(feedback)
-);
+//DELETE endpoints
 
 //listen for the server
 app.listen(PORT, () => 
