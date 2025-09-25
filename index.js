@@ -23,6 +23,7 @@ app.use(express.json());
 app.post('/feedback', (req, res) => { //creates new feedback with an id and a body for the feedback text
     const newFeedback = {
         id: feedback.length + 1,
+        name: req.body.name,
         feedbackDetails: req.body.feedbackDetails
     };
 
