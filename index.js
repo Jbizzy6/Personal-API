@@ -1,5 +1,4 @@
 //TODO: re-write routes into thier own files
-//TODO: write GET method for searching by IDs for feedback and projects
 //TODO: write DELETE method for feedback
 
 const express = require('express');
@@ -54,19 +53,23 @@ app.put('/feedback/:id', (req, res) => {
 app.get('/', (req, res) => res.json(welcome));//get a welcome message
 
 app.get('/about', (req, res) => //get about data
-    res.status(201).json(about)
+    res.status(200).json(about)
 );
 
 app.get('/projects', (req, res) => //get projects data
-    res.status(201).json(projects)
+    res.status(200).json(projects)
 );
 
-app.get('/feedback', (req, res) =>
-    res.status(201).json(feedback)
+app.get('/feedback', (req, res) => //get feedback data
+    res.status(200).json(feedback)
 );
 
 //DELETE endpoints
+app.delete('/feedback/:id', (req, res) => 
+    res.status(204).json(feedback)
+);
 
+//listen for port
 app.listen(PORT, () =>
     console.log(`server is running on localhost ${PORT}`)
 );
