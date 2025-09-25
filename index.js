@@ -21,6 +21,13 @@ app.use(express.json());
 
 //POST endpoints
 app.post('/feedback', (req, res) => { //creates new feedback with an id and a body for the feedback text
+      const { feedbackDetails } = req.body;
+
+  // Check if feedback details field has been filled in
+  if (!feedbackDetails || feedbackDetails.trim() === "") {
+    return res.status(400).json({ error: "Message is required" });
+  }
+    
     const newFeedback = {
         id: feedback.length + 1,
         name: req.body.name,
