@@ -1,12 +1,12 @@
+const epxress = require('express');
+const router = epxress.Router()
+
+//import data
 const { about } = require('../data/data');
 
-const aboutRoute = (app) => {
-    app.aboutRoute('/about')
+//GET /about
+router.get('/', (req, res) =>
+    res.status(200).json(about)
+);
 
-    .get((req, res) => {
-        res.send(about)
-    }
-    )
-};
-
-module.exports = { aboutRoute };
+module.exports = router;
