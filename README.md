@@ -10,6 +10,10 @@ this project aims to build a simple RESTful API with Node.js an express. it serv
 - Node.js
 - npm
 
+### Dependancies
+- Express - web framework for building the api
+- Body-Parser - middleware used for parsing incoming requests
+
 ### Installation
 
  clone the repo
